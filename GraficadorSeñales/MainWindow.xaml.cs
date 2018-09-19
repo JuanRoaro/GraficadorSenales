@@ -23,15 +23,14 @@ namespace GraficadorSeñales
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
 
         private void graficar_Click(object sender, RoutedEventArgs e)
         {
-            double amplitud = double.Parse(txtAmplitud.Text);
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
-            double fase = double.Parse(txtFase.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
-            double frecuencia = double.Parse(txtFrecuencia.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
             Señal señal;
@@ -39,7 +38,12 @@ namespace GraficadorSeñales
             switch (cbTipoSeñal.SelectedIndex)
             {
                 //Seniodal
-                case 0: señal = new SeñalSenoidal(amplitud, fase, frecuencia);
+                case 0:
+                   /* double amplitud = double.Parse(txtAmplitud.Text);
+                    double fase = double.Parse(txtFase.Text);
+                    double frecuencia = double.Parse(txtFrecuencia.Text); */
+
+                    señal = new SeñalSenoidal(5, 0, 8);
                     break;
                 //Rampa
                 case 1: señal = new Rampa();
@@ -103,6 +107,28 @@ namespace GraficadorSeñales
             foreach (Muestra muestra in rampa.muestras)
             {
                 plnGrafica.Points.Add(new Point(muestra.x * scrContenedor.Width, (muestra.y * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
+            }
+        }
+
+        private void cbTipoSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(panelConfiguracion != null)
+            {
+
+            }
+
+            panelConfiguracion.Children.Clear();
+            switch(cbTipoSeñal.SelectedIndex)
+            {
+                case 0: // Senoidal
+                    panelConfiguracion.Children.Add(
+                        new ConfiguracionSeñalSenoidal()
+                        );
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
             }
         }
     }
