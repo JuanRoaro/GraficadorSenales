@@ -33,22 +33,27 @@ namespace GraficadorSeñales
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
-            Señal señal;
+            Señal señal = null;
 
             switch (cbTipoSeñal.SelectedIndex)
             {
                 //Seniodal
                 case 0:
-                   /* double amplitud = double.Parse(txtAmplitud.Text);
-                    double fase = double.Parse(txtFase.Text);
-                    double frecuencia = double.Parse(txtFrecuencia.Text); */
+                    double amplitud = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtAmplitud.Text);
+                    double fase = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFase.Text);
+                    double frecuencia = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFrecuencia.Text);
 
-                    señal = new SeñalSenoidal(5, 0, 8);
+                    señal = new SeñalSenoidal(amplitud, fase, frecuencia);
                     break;
                 //Rampa
                 case 1: señal = new Rampa();
                     break;
-                default: señal = null;
+                case 2:
+                    double alpha = double.Parse(((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
+                    señal = new Exponencial(alpha);
+                    break;
+                default:
+                    señal = null;
                     break;
             }
 
@@ -114,22 +119,29 @@ namespace GraficadorSeñales
         {
             if(panelConfiguracion != null)
             {
+                panelConfiguracion.Children.Clear();
 
+                switch (cbTipoSeñal.SelectedIndex)
+                {
+                    case 0: // Senoidal
+                        panelConfiguracion.Children.Add(
+                            new ConfiguracionSeñalSenoidal()
+                            );
+                        break;
+                    case 1: //RAMPA
+                        break;
+                    case 2://EXPONENCIAL
+                        panelConfiguracion.Children.Add(
+                            new ConfiguracionSeñalExponencial()
+                            );
+                        break;
+                    default:
+                        break;
+                }
             }
 
-            panelConfiguracion.Children.Clear();
-            switch(cbTipoSeñal.SelectedIndex)
-            {
-                case 0: // Senoidal
-                    panelConfiguracion.Children.Add(
-                        new ConfiguracionSeñalSenoidal()
-                        );
-                    break;
-                case 1:
-                    break;
-                default:
-                    break;
-            }
+            
+            
         }
     }
 }
