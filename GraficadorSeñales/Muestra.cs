@@ -19,5 +19,7 @@ namespace GraficadorSeñales
             this.x = x;
             this.y = y;
         }
+
+        //Construcotr sin parametros
     }
 }

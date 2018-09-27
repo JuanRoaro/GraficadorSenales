@@ -24,12 +24,36 @@ namespace GraficadorSeñales
             {
                 double valorMuestra = this.evaluar(i);
 
-                if (Math.Abs(valorMuestra) > this.amplitudMaxima)
-                {
-                    this.amplitudMaxima = Math.Abs(valorMuestra);
-                }
                 this.muestras.Add(new Muestra(i, valorMuestra));
 
+            }
+        }
+
+        public void escalar(double factor)
+        {
+            foreach (Muestra muestra in muestras)
+            {
+                muestra.y *= factor;
+            }
+        }
+
+        public void actualizarAmplitudMaxima()
+        {
+            foreach (Muestra muestra in muestras)
+            {
+                if (Math.Abs(muestra.y) > this.amplitudMaxima)
+                {
+                    this.amplitudMaxima = Math.Abs(muestra.y);
+                }
+            }
+
+        }
+
+        public void desplazarY(double desplazamiento)
+        {
+            foreach (Muestra muestra in muestras)
+            {
+                muestra.y += desplazamiento;
             }
         }
     }

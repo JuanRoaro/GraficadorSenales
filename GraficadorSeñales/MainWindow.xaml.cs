@@ -23,8 +23,6 @@ namespace GraficadorSeñales
         public MainWindow()
         {
             InitializeComponent();
-
-            
         }
 
         private void graficar_Click(object sender, RoutedEventArgs e)
@@ -33,7 +31,7 @@ namespace GraficadorSeñales
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
 
-            Señal señal = null;
+            Señal señal;
 
             switch (cbTipoSeñal.SelectedIndex)
             {
@@ -42,30 +40,54 @@ namespace GraficadorSeñales
                     double amplitud = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtAmplitud.Text);
                     double fase = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFase.Text);
                     double frecuencia = double.Parse(((ConfiguracionSeñalSenoidal)panelConfiguracion.Children[0]).txtFrecuencia.Text);
-
                     señal = new SeñalSenoidal(amplitud, fase, frecuencia);
                     break;
                 //Rampa
-                case 1: señal = new Rampa();
+                case 1:
+                    señal = new Rampa();
                     break;
+                // Exponencial
                 case 2:
                     double alpha = double.Parse(((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
-                    señal = new Exponencial(alpha);
+                    señal = new SeñalExponencial(alpha);
                     break;
                 default:
                     señal = null;
                     break;
             }
 
-            señal.tiempoFinal = tiempoFinal;
-            señal.tiempoInicial = tiempoInicial;
-            señal.frecuenciaMuestreo = frecuenciaMuestreo;
 
-            señal.construirSeñalDigital();
+
+
+
+
+
             plnGrafica.Points.Clear();
 
             if (señal != null)
             {
+                señal.tiempoFinal = tiempoFinal;
+                señal.tiempoInicial = tiempoInicial;
+                señal.frecuenciaMuestreo = frecuenciaMuestreo;
+
+                //contruir señal
+                señal.construirSeñalDigital();
+                //ecalar
+                if ((bool)chbEscala.IsChecked)
+                {
+                    double factorEscala = double.Parse(txtEscalaAmplitud.Text);
+                    señal.escalar(factorEscala);
+                }
+                //desplazamiento
+                if ((bool)chbDesplazamiento.IsChecked)
+                {
+                    double desplazamiento = double.Parse(txtDesplazamientoY.Text);
+                    señal.desplazarY(desplazamiento);
+                }
+
+                //actualizar amplitud maxima
+                señal.actualizarAmplitudMaxima();
+
                 //recorrer una coleccion o arreglo
                 foreach (Muestra muestra in señal.muestras)
                 {
@@ -76,9 +98,9 @@ namespace GraficadorSeñales
                 lblAmplitudMaximaNegativaY.Text = "-" + señal.amplitudMaxima.ToString();
             }
 
-           
 
-            
+
+
 
             plnEjeX.Points.Clear();
             //punto del principio
@@ -117,31 +139,24 @@ namespace GraficadorSeñales
 
         private void cbTipoSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(panelConfiguracion != null)
+            if (panelConfiguracion != null)
             {
                 panelConfiguracion.Children.Clear();
-
                 switch (cbTipoSeñal.SelectedIndex)
                 {
-                    case 0: // Senoidal
-                        panelConfiguracion.Children.Add(
-                            new ConfiguracionSeñalSenoidal()
-                            );
+                    case 0: //Senoidal
+                        panelConfiguracion.Children.Add(new ConfiguracionSeñalSenoidal());
                         break;
-                    case 1: //RAMPA
+                    case 1: //rampa
                         break;
-                    case 2://EXPONENCIAL
-                        panelConfiguracion.Children.Add(
-                            new ConfiguracionSeñalExponencial()
-                            );
+                    case 2: //Exponencial
+                        panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
                         break;
                     default:
                         break;
                 }
             }
 
-            
-            
         }
     }
 }
