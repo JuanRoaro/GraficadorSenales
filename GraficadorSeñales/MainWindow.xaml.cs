@@ -85,6 +85,15 @@ namespace GraficadorSeñales
                     señal.desplazarY(desplazamiento);
                 }
 
+                //desplazamiento
+                if ((bool)chbTruncar.IsChecked)
+                {
+                    double umbral = double.Parse(txtUmbral.Text);
+                    señal.truncar(umbral);
+                }
+
+
+
                 //actualizar amplitud maxima
                 señal.actualizarAmplitudMaxima();
 

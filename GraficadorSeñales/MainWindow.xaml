@@ -37,6 +37,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="259,77,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbEscala" Content="" HorizontalAlignment="Left" Margin="394,46,0,0" VerticalAlignment="Top" />
         <CheckBox x:Name="chbDesplazamiento" Content="" HorizontalAlignment="Left" Margin="394,102,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="txtUmbral" HorizontalAlignment="Left" Height="23" Margin="259,153,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncar}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="259,132,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbTruncar" Content="" HorizontalAlignment="Left" Margin="394,157,0,0" VerticalAlignment="Top" />
 
     </Grid>
 </Window>

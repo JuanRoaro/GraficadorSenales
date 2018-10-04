@@ -56,5 +56,20 @@ namespace GraficadorSeñales
                 muestra.y += desplazamiento;
             }
         }
+
+        public void truncar(double n)
+        {
+            foreach (Muestra muestra in muestras)
+            {
+                if (muestra.y > n)
+                {
+                    muestra.y = n;
+                }
+                else if (muestra.y < -n)
+                {
+                    muestra.y = -n;
+                }
+            }
+        }
     }
 }
