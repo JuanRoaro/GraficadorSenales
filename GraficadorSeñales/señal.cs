@@ -29,11 +29,11 @@ namespace GraficadorSeñales
             }
         }
 
-        public void escalar(double factor)
+        public void escalar(double escalar)
         {
             foreach (Muestra muestra in muestras)
             {
-                muestra.y *= factor;
+                muestra.y *= escalar;
             }
         }
 

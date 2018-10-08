@@ -51,6 +51,11 @@ namespace GraficadorSeñales
                     double alpha = double.Parse(((ConfiguracionSeñalExponencial)panelConfiguracion.Children[0]).txtAlpha.Text);
                     señal = new SeñalExponencial(alpha);
                     break;
+                // Exponencial2
+                case 3:
+                    double alpha2 = double.Parse(((ConfiguracionSeñalExponencial2)panelConfiguracion.Children[0]).txtAlpha2.Text);
+                    señal = new SeñalExponencial2(alpha2);
+                    break;
                 default:
                     señal = null;
                     break;
@@ -72,12 +77,14 @@ namespace GraficadorSeñales
 
                 //contruir señal
                 señal.construirSeñalDigital();
-                //ecalar
-                if ((bool)chbEscala.IsChecked)
+
+                //escalar
+                if ((bool)chbEscalar.IsChecked)
                 {
-                    double factorEscala = double.Parse(txtEscalaAmplitud.Text);
-                    señal.escalar(factorEscala);
+                    double escalar = double.Parse(txtEscalar.Text);
+                    señal.escalar(escalar);
                 }
+
                 //desplazamiento
                 if ((bool)chbDesplazamiento.IsChecked)
                 {
@@ -160,6 +167,9 @@ namespace GraficadorSeñales
                         break;
                     case 2: //Exponencial
                         panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
+                        break;
+                    case 3: //Exponencial2
+                        panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial2());
                         break;
                     default:
                         break;

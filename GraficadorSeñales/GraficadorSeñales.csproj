@@ -57,6 +57,9 @@
     <Compile Include="ConfiguracionSeñalExponencial.xaml.cs">
       <DependentUpon>ConfiguracionSeñalExponencial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfiguracionSeñalExponencial2.xaml.cs">
+      <DependentUpon>ConfiguracionSeñalExponencial2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfiguracionSeñalSenoidal.xaml.cs">
       <DependentUpon>ConfiguracionSeñalSenoidal.xaml</DependentUpon>
     </Compile>
@@ -65,8 +68,13 @@
     <Compile Include="Rampa.cs" />
     <Compile Include="Señal.cs" />
     <Compile Include="SeñalExponencial.cs" />
+    <Compile Include="SeñalExponencial2.cs" />
     <Compile Include="SeñalSenoidal.cs" />
     <Page Include="ConfiguracionSeñalExponencial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfiguracionSeñalExponencial2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
