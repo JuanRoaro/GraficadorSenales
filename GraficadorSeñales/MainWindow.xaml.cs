@@ -110,8 +110,8 @@ namespace GraficadorSeñales
                     plnGrafica.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / señal.amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
                 }
 
-                lblAmplitudMaximaY.Text = señal.amplitudMaxima.ToString();
-                lblAmplitudMaximaNegativaY.Text = "-" + señal.amplitudMaxima.ToString();
+                lblAmplitudMaximaY.Text = señal.amplitudMaxima.ToString("F");
+                lblAmplitudMaximaNegativaY.Text = "-" + señal.amplitudMaxima.ToString("F");
             }
 
 
@@ -175,6 +175,11 @@ namespace GraficadorSeñales
                         break;
                 }
             }
+
+        }
+
+        private void cbTipoSeñal_SegundaSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

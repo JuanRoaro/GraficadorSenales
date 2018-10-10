@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="165.5">
     <Grid>
-        <TextBox x:Name="txtAlpha" HorizontalAlignment="Left" Height="22" Margin="34,58,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="34,36,0,0" TextWrapping="Wrap" Text="Alpha:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtAlpha" HorizontalAlignment="Left" Height="22" Margin="0,21,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Alpha:" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>
