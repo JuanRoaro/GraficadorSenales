@@ -49,13 +49,13 @@
             <ComboBoxItem Content="Señal Exponencial 2"/>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="388,14,0,0" TextWrapping="Wrap" Text="Tipo de señal:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDesplazamientoY_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,94,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbDesplazamiento}"/>
+        <TextBox x:Name="txtMagnituddesplazamiento_segundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,94,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbDesplazamiento}"/>
         <TextBlock HorizontalAlignment="Left" Margin="532,73,0,0" TextWrapping="Wrap" Text="Desplazamiento en Y:" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbDesplazamiento_SegundaSeñal" Content="" HorizontalAlignment="Left" Margin="666,98,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtUmbral_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,149,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncar}"/>
+        <TextBox x:Name="txtumbral_segundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,149,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbTruncar}"/>
         <TextBlock HorizontalAlignment="Left" Margin="532,128,0,0" TextWrapping="Wrap" Text="Truncar:" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbTruncar_SegundaSeñal" Content="" HorizontalAlignment="Left" Margin="666,153,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="txtEscalar_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbEscalar}"/>
+        <TextBox x:Name="txtFactorEscalar_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbEscalar}"/>
         <TextBlock HorizontalAlignment="Left" Margin="532,21,0,0" TextWrapping="Wrap" Text="Escala" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbEscalar_SegundaSeñal" Content="" HorizontalAlignment="Left" Margin="666,46,0,0" VerticalAlignment="Top" />
 
