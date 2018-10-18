@@ -18,8 +18,15 @@ namespace GraficadorSeñales
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
+
+        double amplitudMaxima = 1;
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -156,15 +163,34 @@ namespace GraficadorSeñales
 
                 //actualizar amplitud maxima
                 señal.actualizarAmplitudMaxima();
+                segundaSeñal.actualizarAmplitudMaxima();
+
+                amplitudMaxima  = señal.amplitudMaxima;
+                if (segundaSeñal.amplitudMaxima > amplitudMaxima)
+                {
+                    amplitudMaxima = segundaSeñal.amplitudMaxima;
+                }
+
+                plnGrafica.Points.Clear();
+                plnGraficaDos.Points.Clear();
+
+                lblAmplitudMaximaY.Text = amplitudMaxima.ToString("F");
+                lblAmplitudMaximaNegativaY.Text = "-" + amplitudMaxima.ToString("F");
+
+
 
                 //recorrer una coleccion o arreglo
                 foreach (Muestra muestra in señal.muestras)
                 {
-                    plnGrafica.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / señal.amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
+                    plnGrafica.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
                 }
 
-                lblAmplitudMaximaY.Text = señal.amplitudMaxima.ToString("F");
-                lblAmplitudMaximaNegativaY.Text = "-" + señal.amplitudMaxima.ToString("F");
+                foreach (Muestra muestra in segundaSeñal.muestras)
+                {
+                    plnGraficaDos.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
+                }
+
+
             }
 
             plnEjeX.Points.Clear();
@@ -229,7 +255,26 @@ namespace GraficadorSeñales
 
         private void cbTipoSeñal_SegundaSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (panelConfiguracion_SegundaSeñal != null)
+            {
+                panelConfiguracion_SegundaSeñal.Children.Clear();
+                switch (cbTipoSeñal_SegundaSeñal.SelectedIndex)
+                {
+                    case 0: //Senoidal
+                        panelConfiguracion_SegundaSeñal.Children.Add(new ConfiguracionSeñalSenoidal());
+                        break;
+                    case 1: //rampa
+                        break;
+                    case 2: //Exponencial
+                        panelConfiguracion_SegundaSeñal.Children.Add(new ConfiguracionSeñalExponencial());
+                        break;
+                    case 3: //Exponencial2
+                        panelConfiguracion_SegundaSeñal.Children.Add(new ConfiguracionSeñalExponencial2());
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
