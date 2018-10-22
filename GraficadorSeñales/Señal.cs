@@ -71,10 +71,5 @@ namespace GraficadorSeñales
                 }
             }
         }
-
-        public static Señal sumar(Señal senoidal, Señal sumando2)
-        {
-            return null;
-        }
     }
 }

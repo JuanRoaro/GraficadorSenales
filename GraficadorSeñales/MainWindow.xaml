@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraficadorSeñales"
         mc:Ignorable="d"
-        Title="MainWindow" Height="525.61" Width="897.5">
+        Title="MainWindow" Height="780.61" Width="897.5">
     <Grid>
         <TextBox x:Name="txtTiempoInicial" HorizontalAlignment="Left" Height="23" Margin="751,28,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="751,11,0,0" TextWrapping="Wrap" Text="Tiempo inicial:" VerticalAlignment="Top"/>
@@ -59,12 +59,24 @@
         <TextBox x:Name="txtFactorEscalar_SegundaSeñal" HorizontalAlignment="Left" Height="23" Margin="532,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="{Binding IsChecked, ElementName=chbEscalar}"/>
         <TextBlock HorizontalAlignment="Left" Margin="532,21,0,0" TextWrapping="Wrap" Text="Escala" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbEscalar_SegundaSeñal" Content="" HorizontalAlignment="Left" Margin="666,46,0,0" VerticalAlignment="Top" />
-        <ComboBox HorizontalAlignment="Left" Margin="751,197,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="cbTipoOperacion" HorizontalAlignment="Left" Margin="751,197,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Suma"/>
             <ComboBoxItem Content="Multiplicacion"/>
         </ComboBox>
-        
+
         <TextBlock HorizontalAlignment="Left" Margin="751,176,0,0" TextWrapping="Wrap" Text="Operaciones:" VerticalAlignment="Top"/>
+        <Button Content="Realizar Operacion" HorizontalAlignment="Left" Margin="751,234,0,0" VerticalAlignment="Top" Width="120" x:Name="btnRealizarOperacion" Click="btnRealizarOperacion_Click"/>
+        <ScrollViewer x:Name="scrContenedor_Resultado" HorizontalAlignment="Left" Height="231" Margin="81,509,0,0" VerticalAlignment="Top" Width="790" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+            <Grid Height="148">
+                <Polyline Stroke="CornflowerBlue" StrokeThickness="2" x:Name="plnGrafica1"/>
+                <Polyline Stroke="DarkSalmon" StrokeThickness="2" x:Name="plnGraficaDos1"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeX1"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeY1"/>
+            </Grid>
+        </ScrollViewer>
+        <TextBlock x:Name="lblAmplitudMaximaY_Copy" HorizontalAlignment="Left" Margin="43,556,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblAmplitudMaximaNegativaY_Copy" HorizontalAlignment="Left" Margin="43,689,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblAmplitud0_Copy" HorizontalAlignment="Left" Margin="43,624,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
