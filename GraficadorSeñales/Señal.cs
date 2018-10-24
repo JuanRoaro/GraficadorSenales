@@ -71,5 +71,27 @@ namespace GraficadorSeñales
                 }
             }
         }
+
+        public static Señal sumar(Señal uno, Señal dos)
+        {
+            SeñalPersonalizada resultado = new SeñalPersonalizada();
+
+            resultado.tiempoFinal = uno.tiempoFinal;
+            resultado.tiempoInicial = uno.tiempoInicial;
+            resultado.frecuenciaMuestreo = uno.frecuenciaMuestreo;
+
+            int c=0;
+            foreach(Muestra muestra in uno.muestras)
+            {
+                Muestra muestra2 = new Muestra();
+
+                muestra2.x = muestra.x;
+                muestra2.y = muestra.y + dos.muestras[c++].y;
+
+                resultado.muestras.Add(muestra2);
+            }
+
+            return resultado;
+        }
     }
 }

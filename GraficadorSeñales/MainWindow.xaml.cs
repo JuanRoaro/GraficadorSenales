@@ -173,8 +173,8 @@ namespace GraficadorSeñales
 
                 plnGraficaResultado.Points.Clear();
 
-                lblAmplitudMaximaY.Text = señalResultado.AmplitudMaxima.ToString("F");
-                lblAmplitudMaximaNegativaY_Resultado.Text = "-" + señalResultado amplitudMaxima.ToString("F");
+                lblAmplitudMaximaY.Text = señalResultado.amplitudMaxima.ToString("F");
+                lblAmplitudMaximaNegativaY.Text = "-" + señalResultado.amplitudMaxima.ToString("F");
 
 
 
@@ -192,13 +192,13 @@ namespace GraficadorSeñales
 
             }
 
-            plnEjeX.Points.Clear();
+            plnEjeXResultado.Points.Clear();
             //punto del principio
-            plnEjeX.Points.Add(new Point(0, scrContenedor_Resultado.Height / 2));
+            plnEjeXResultado.Points.Add(new Point(0, scrContenedor_Resultado.Height / 2));
             //punto del fin
-            plnEjeX.Points.Add(new Point((señalResultado.tiempoFinal - señalResultado.tiempoInicial) * scrContenedor.Width, scrContenedor.Height / 2));
+            plnEjeXResultado.Points.Add(new Point((señalResultado.tiempoFinal - señalResultado.tiempoInicial) * scrContenedor.Width, scrContenedor.Height / 2));
 
-            plnEjeY.Points.Clear();
+            plnEjeYResultado.Points.Clear();
             //punto del principio
             plnEjeYResultado.Points.Add(new Point((0 - señalResultado.tiempoInicial) * scrContenedor_Resultado.Width, (1 * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
             //punto del fin
@@ -278,6 +278,7 @@ namespace GraficadorSeñales
 
         private void btnRealizarOperacion_Click(object sender, RoutedEventArgs e)
         {
+
             señalResultado = null;
             switch(cbTipoOperacion.SelectedIndex)
             {
@@ -295,10 +296,6 @@ namespace GraficadorSeñales
             double tiempoInicial = double.Parse(txtTiempoInicial.Text);
             double tiempoFinal = double.Parse(txtTiempoFinal.Text);
             double frecuenciaMuestreo = double.Parse(txtFrecuenciaMuestreo.Text);
-
-            Señal señal;
-            Señal segundaSeñal;
-            Señal señalResultado;
 
             switch (cbTipoSeñal.SelectedIndex)
             {

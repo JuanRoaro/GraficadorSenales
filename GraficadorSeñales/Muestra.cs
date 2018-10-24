@@ -14,6 +14,12 @@ namespace GraficadorSeñales
         //El valor de esa  muestra en ese instante
         public double y { get; set; }
 
+        public Muestra()
+        {
+            this.x = 0;
+            this.y = 0;
+        }
+
         public Muestra(double x, double y)
         {
             this.x = x;

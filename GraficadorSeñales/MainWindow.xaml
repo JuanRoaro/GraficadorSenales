@@ -68,15 +68,14 @@
         <Button Content="Realizar Operacion" HorizontalAlignment="Left" Margin="751,234,0,0" VerticalAlignment="Top" Width="120" x:Name="btnRealizarOperacion" Click="btnRealizarOperacion_Click"/>
         <ScrollViewer x:Name="scrContenedor_Resultado" HorizontalAlignment="Left" Height="231" Margin="81,509,0,0" VerticalAlignment="Top" Width="790" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
             <Grid Height="148">
-                <Polyline Stroke="CornflowerBlue" StrokeThickness="2" x:Name="plnGrafica1"/>
-                <Polyline Stroke="DarkSalmon" StrokeThickness="2" x:Name="plnGraficaDos1"/>
-                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeX1"/>
-                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeY1"/>
+                <Polyline Stroke="CornflowerBlue" StrokeThickness="2" x:Name="plnGraficaResultado"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeXResultado"/>
+                <Polyline Stroke="Black" StrokeThickness="0.5" x:Name="plnEjeYResultado"/>
             </Grid>
         </ScrollViewer>
-        <TextBlock x:Name="lblAmplitudMaximaY_Copy" HorizontalAlignment="Left" Margin="43,556,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="lblAmplitudMaximaNegativaY_Copy" HorizontalAlignment="Left" Margin="43,689,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="lblAmplitud0_Copy" HorizontalAlignment="Left" Margin="43,624,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblAmplitudMaximaY1" HorizontalAlignment="Left" Margin="43,556,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblAmplitudMaximaNegativaY1" HorizontalAlignment="Left" Margin="43,689,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblAmplitud01" HorizontalAlignment="Left" Margin="43,624,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
