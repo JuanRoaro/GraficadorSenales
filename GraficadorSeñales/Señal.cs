@@ -72,26 +72,77 @@ namespace GraficadorSeñales
             }
         }
 
-        public static Señal sumar(Señal uno, Señal dos)
+        public static Señal sumar(Señal sumando1, Señal sumando2)
         {
             SeñalPersonalizada resultado = new SeñalPersonalizada();
 
-            resultado.tiempoFinal = uno.tiempoFinal;
-            resultado.tiempoInicial = uno.tiempoInicial;
-            resultado.frecuenciaMuestreo = uno.frecuenciaMuestreo;
+            resultado.tiempoInicial = sumando1.tiempoInicial;
+            resultado.tiempoFinal = sumando1.tiempoFinal;
+            resultado.frecuenciaMuestreo = sumando1.frecuenciaMuestreo;
 
-            int c=0;
-            foreach(Muestra muestra in uno.muestras)
+            int indice = 0;
+            foreach (Muestra muestra in sumando1.muestras)
             {
-                Muestra muestra2 = new Muestra();
+                Muestra muestraResultado = new Muestra();
+                muestraResultado.x = muestra.x;
+                muestraResultado.y = muestra.y + sumando2.muestras[indice++].y;
 
-                muestra2.x = muestra.x;
-                muestra2.y = muestra.y + dos.muestras[c++].y;
-
-                resultado.muestras.Add(muestra2);
+                resultado.muestras.Add(muestraResultado);
             }
 
             return resultado;
         }
+
+        public static Señal multiplicar(Señal señal1, Señal señal2)
+        {
+            SeñalPersonalizada resultado = new SeñalPersonalizada();
+
+            resultado.tiempoInicial = señal1.tiempoInicial;
+            resultado.tiempoFinal = señal1.tiempoFinal;
+            resultado.frecuenciaMuestreo = señal1.frecuenciaMuestreo;
+
+            int indice = 0;
+            foreach (Muestra muestra in señal1.muestras)
+            {
+                Muestra muestraResultado = new Muestra();
+                muestraResultado.x = muestra.x;
+                muestraResultado.y = muestra.y * señal2.muestras[indice++].y;
+
+                resultado.muestras.Add(muestraResultado);
+            }
+
+            return resultado;
+        }
+
+        public static Señal convolucionar(Señal señal1, Señal señal2)
+        {
+            SeñalPersonalizada resultado = new SeñalPersonalizada();
+
+            resultado.tiempoInicial = señal1.tiempoInicial + señal2.tiempoInicial;
+            resultado.tiempoFinal = señal1.tiempoFinal + señal2.tiempoFinal;
+            resultado.frecuenciaMuestreo = señal1.frecuenciaMuestreo;
+
+            double periodoMuestreo = 1 / resultado.frecuenciaMuestreo;
+
+
+            double cantidadMuestrasResultado = periodoMuestreo * (resultado.tiempoFinal - resultado.tiempoInicial);
+            double instanteActual = resultado.tiempoInicial;
+            for (int n = 0; n < cantidadMuestrasResultado; n++)
+            {
+                double valorMuestra = 0;
+                for (int k = 0; k < señal2.muestras.Count; k++)
+                {
+                    if ((n - k) >= 0 && (n - k) < señal2.muestras.Count)
+                        valorMuestra += señal1.muestras[k].y * señal2.muestras[n - k].y;
+                }
+                Muestra muestra = new Muestra(instanteActual, valorMuestra);
+                resultado.muestras.Add(muestra);
+                instanteActual += periodoMuestreo;
+            }
+
+            return resultado;
+        }
+
+
     }
 }

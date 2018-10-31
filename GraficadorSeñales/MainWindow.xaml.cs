@@ -179,11 +179,10 @@ namespace GraficadorSeñales
 
 
                 //recorrer una coleccion o arreglo
-                foreach (SeñalResultado in señalResultado.muestras)
+                foreach (Muestra muestra in señal.muestras)
                 {
-                    plnGrafica.Points.Add(new Point((muestra.x - señalResultado.tiempoInicial) * scrContenedor_Resultado.Width, (muestra.y / señalResultado.amplitudMaxima * ((scrContenedor_Resultado.Height / 2.0) - 30) * -1) + (scrContenedor_Resultado.Height / 2)));
+                    plnGrafica.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
                 }
-
                 foreach (Muestra muestra in segundaSeñal.muestras)
                 {
                     plnGraficaDos.Points.Add(new Point((muestra.x - tiempoInicial) * scrContenedor.Width, (muestra.y / amplitudMaxima * ((scrContenedor.Height / 2.0) - 30) * -1) + (scrContenedor.Height / 2)));
