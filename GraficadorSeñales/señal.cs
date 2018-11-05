@@ -135,6 +135,7 @@ namespace GraficadorSeñales
                     if ((n - k) >= 0 && (n - k) < señal2.muestras.Count)
                         valorMuestra += señal1.muestras[k].y * señal2.muestras[n - k].y;
                 }
+                valorMuestra /= resultado.frecuenciaMuestreo;
                 Muestra muestra = new Muestra(instanteActual, valorMuestra);
                 resultado.muestras.Add(muestra);
                 instanteActual += periodoMuestreo;
